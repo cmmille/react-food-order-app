@@ -1,3 +1,5 @@
+import ReactDOM from "react-dom"
+
 import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
 import Menu from "./components/Menu/Menu";
@@ -8,7 +10,8 @@ function App() {
     <>
       <Navbar />
       <div className="container">
-        <CartModal />
+        {ReactDOM.createPortal(<CartModal />, document.getElementById("modal"))}
+
         <Header />
         <Menu />
       </div>

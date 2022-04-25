@@ -2,9 +2,9 @@ import styles from "./Button.module.css";
 
 const Button = (props) => {
   function getStyle() {
-    if (props.style === "inverted") {
+    if (props.styled === "inverted") {
       return styles.inverted;
-    } else if (props.style === "dark") {
+    } else if (props.styled === "dark") {
       return styles.dark
     } else {
       return styles.normal

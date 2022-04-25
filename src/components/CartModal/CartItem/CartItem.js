@@ -13,12 +13,12 @@ const CartItem = (props) => {
             <h2 className={styles.quantity}>x {props.quantity}</h2>
           </div>
           <div className={styles.row}>
-            <Button style="inverted">-</Button>
-            <Button style="inverted">+</Button>
+            <Button styled="inverted">-</Button>
+            <Button styled="inverted">+</Button>
           </div>
         </div>
       </div>
-      <hr className={styles.divider}/>
+      <hr className={styles.divider} />
     </>
   );
 };

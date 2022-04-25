@@ -10,8 +10,17 @@
     left: 50%;
     top: 30%;
     transform: translate(-50%);
-    /* z-index: 999; */
 }
+.backdrop {
+    background-color: black;
+    height: 200%;
+    width: 100vw;
+    opacity: 0.6;
+    position: fixed;
+    left: 50%;
+    top: -10%;
+    transform: translate(-50%);
+  }
 
 .row{
     display: flex;
