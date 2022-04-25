@@ -4,7 +4,6 @@ import Card from "../UI/Card/Card";
 import MenuItem from "./MenuItem/MenuItem";
 import { uid } from "uid";
 
-
 const dummyItems = [
   {
     name: "Mariner's Select",
@@ -16,6 +15,12 @@ const dummyItems = [
     name: "Stinky Stink Feesh",
     description: "It's really stinky.",
     price: 5.99,
+    key: uid(),
+  },
+  {
+    name: "Salmon Dinner",
+    description: "Pacific pink feesh.",
+    price: 12.69,
     key: uid(),
   },
 ];

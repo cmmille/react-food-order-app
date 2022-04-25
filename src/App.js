@@ -1,16 +1,18 @@
 import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
 import Menu from "./components/Menu/Menu";
+import CartModal from "./components/CartModal/CartModal";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Navbar />
       <div className="container">
+        <CartModal />
         <Header />
         <Menu />
       </div>
-    </div>
+    </>
   );
 }
 

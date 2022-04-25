@@ -1,13 +1,29 @@
 .button {
-    background-color: var(--primary-dark);
-    color: white;
-    padding: 0 2rem;
-    border: none;
-    border-radius: 50px;
-    font-size: 0.75rem;
-    transition: background-color 300ms;
-  }
-  .button:hover{
-      background-color: var(--primary-light);
-      cursor: pointer;
-  }
+  /* background-color: var(--primary); */
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  padding: 0.5rem 2rem;
+  transition: color 300ms, border 300ms, background-color 300ms;
+}
+.button:hover {
+  background-color: var(--primary-light);
+  cursor: pointer;
+}
+.normal{
+  background-color: var(--primary);
+}
+.dark{
+  background-color: var(--primary-dark);
+}
+.inverted{
+  background-color: white;
+  color: var(--primary-dark);
+  font-weight: 600;
+  border: 1px solid var(--primary-dark);
+}
+.inverted:hover{
+  border: 1px solid var(--primary-light);
+  color: white;
+}

@@ -1,0 +1,28 @@
+.item{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+.item h2{
+    margin: 0;
+    margin-bottom: 0.5rem;
+}
+.price{
+    color: var(--secondary);
+}
+.quantity{
+    padding: 0.25rem;
+    font-size: 1.25rem;
+}
+
+.divider{
+    border: solid var(--primary) 2px;
+}
