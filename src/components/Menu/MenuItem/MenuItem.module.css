@@ -1,0 +1,44 @@
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product{
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+.description{
+    font-style: italic;
+}
+.price{
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--secondary);
+}
+.column p{
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.amount {
+    font-size: 1.25rem;
+}
+.quantity{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.add-button{
+    font-size: 1rem;
+    padding: 0.5rem 2rem;
+    background-color: var(--primary);
+}
