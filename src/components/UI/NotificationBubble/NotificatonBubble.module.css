@@ -1,0 +1,9 @@
+.bubble{
+    background-color: var(--primary-light);
+    border-radius: 50px;
+    text-align: center;
+    font-size: 1rem;
+    width: 2rem;
+    height: 100%;
+    padding: 0.25rem;
+}

@@ -1,0 +1,14 @@
+.header{
+    background-color: var(--dark-lighter);
+    text-align: center;
+}
+.header h2{
+    letter-spacing: 0.1rem;
+}
+.header p{
+    font-size: 1.15rem;
+}
+.underline{
+    border-bottom: 3px solid var(--secondary);
+    border-radius: 4px;
+}
