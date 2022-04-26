@@ -1,8 +1,11 @@
-import styles from "./Menu.module.css";
+import { uid } from "uid";
 
 import Card from "../UI/Card/Card";
 import MenuItem from "./MenuItem/MenuItem";
-import { uid } from "uid";
+import CartContext from "../../store/cart-context"
+
+import styles from "./Menu.module.css";
+import { useContext } from "react";
 
 const dummyItems = [
   {
@@ -26,15 +29,23 @@ const dummyItems = [
 ];
 
 const Menu = () => {
+const cartCtx = useContext(CartContext)
+
+function submitHandler(item) {
+  cartCtx.onAddToCart(item)
+}
+
   return (
     <Card className={styles.menu}>
       {dummyItems.map((item) => {
         return (
           <MenuItem
+            id={item.key}
             key={item.key}
             itemName={item.name}
             itemDescription={item.description}
             itemPrice={item.price}
+            onSubmit={submitHandler}
           />
         );
       })}

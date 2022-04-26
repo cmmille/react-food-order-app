@@ -5,14 +5,22 @@ const Button = (props) => {
     if (props.styled === "inverted") {
       return styles.inverted;
     } else if (props.styled === "dark") {
-      return styles.dark
+      return styles.dark;
+    } else if (props.styled === "disabled") {
+      return styles.disabled;
     } else {
-      return styles.normal
+      return styles.normal;
     }
+  }
+  function clickHandler(){
+    props.onClick()
   }
 
   return (
-    <button className={`${styles.button} ${getStyle()} ${props.className} `}>
+    <button
+      onClick={clickHandler}
+      className={`${styles.button} ${getStyle()} ${props.className} `}
+    >
       {props.children}
     </button>
   );

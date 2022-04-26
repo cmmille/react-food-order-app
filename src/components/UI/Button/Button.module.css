@@ -17,6 +17,16 @@
 .dark{
   background-color: var(--primary-dark);
 }
+.disabled{
+  background-color: white;
+  color: grey;
+  font-weight: 600;
+  border: 1px solid grey;
+}
+.disabled:hover{
+  cursor: auto;
+  background-color: inherit;
+}
 .inverted{
   background-color: white;
   color: var(--primary-dark);
