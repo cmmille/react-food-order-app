@@ -14,7 +14,7 @@ const CartModal = (props) => {
     cartCtx.onCart()
   }
   function confirmOrder(){
-    if (cartCtx.itemsInCart != 0){
+    if (cartCtx.itemsInCart !== 0){
       console.log("Order confirmed!");
       cartCtx.onCart()
     }

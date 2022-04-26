@@ -1,0 +1,23 @@
+.modal{
+    background-color: white;
+    color: black;
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 8px 0px;
+    margin: auto;
+    max-width: 900px;
+    width: 80%;
+    border-radius: 6px;
+    position: fixed;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%);
+}
+.backdrop {
+    background-color: black;
+    height: 200%;
+    width: 100vw;
+    opacity: 0.6;
+    position: fixed;
+    left: 50%;
+    top: -10%;
+    transform: translate(-50%);
+  }
