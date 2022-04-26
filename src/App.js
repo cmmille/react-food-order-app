@@ -4,7 +4,7 @@ import {useContext} from "react"
 import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
 import Menu from "./components/Menu/Menu";
-import CartModal from "./components/CartModal/CartModal";
+import Cart from "./components/Cart/Cart";
 import CartContext from "./store/cart-context";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
     <>
       <Navbar />
       <div className="container">
-      {storeContext.isCartOpen && <CartModal />}
+      {storeContext.isCartOpen && <Cart />}
         <Header />
         <Menu />
       </div>
