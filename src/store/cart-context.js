@@ -9,6 +9,7 @@ const CartContext = React.createContext({
   onAddToCart: () => {},
   increaseItem: () => {},
   decreaseItem: () => {},
+  clearCart: () => {}
 });
 
 export const CartContextProvider = (props) => {
@@ -88,6 +89,10 @@ export const CartContextProvider = (props) => {
     setItems(newItems.filter(value => value != null));
   }
 
+  function clearCart() {
+    setItems([])
+  }
+
 
   // Component
   return (
@@ -101,6 +106,7 @@ export const CartContextProvider = (props) => {
         onAddToCart: addToCart,
         increaseItem: incrementItemHandler,
         decreaseItem: decrementItemHandler,
+        clearCart: clearCart
       }}
     >
       {props.children}

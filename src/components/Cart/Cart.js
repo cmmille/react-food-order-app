@@ -1,5 +1,4 @@
-import ReactDOM from "react-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import Modal from "../UI/Modal/Modal";
 import Button from "../UI/Button/Button";
@@ -8,8 +7,10 @@ import CartContext from "../../store/cart-context";
 import styles from "./Cart.module.css";
 
 const Cart = (props) => {
+  // State
   const cartCtx = useContext(CartContext);
 
+  // Handlers
   function closeCart() {
     cartCtx.onCart();
   }
@@ -17,8 +18,12 @@ const Cart = (props) => {
     if (cartCtx.itemsInCart !== 0) {
       console.log("Order confirmed!");
       cartCtx.onCart();
+      cartCtx.clearCart();
+      props.onConfirmed();
     }
   }
+
+  // Components
 
   return (
     <Modal onClick={closeCart}>
