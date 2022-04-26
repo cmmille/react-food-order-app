@@ -4,6 +4,7 @@
 }
 .header h2{
     letter-spacing: 0.1rem;
+    line-height: 2rem;
 }
 .header p{
     font-size: 1.15rem;
