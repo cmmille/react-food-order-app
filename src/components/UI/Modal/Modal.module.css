@@ -4,12 +4,16 @@
     box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 8px 0px;
     margin: auto;
     max-width: 800px;
+    max-height: 60vh;
     width: 80%;
     border-radius: 6px;
     position: fixed;
     left: 50%;
-    top: 30%;
+    top: 20%;
+    overflow-y: auto;
     transform: translate(-50%);
+    z-index: 999;
+    animation: fade-in 500ms ease-out;
 }
 .backdrop {
     background-color: black;
@@ -20,4 +24,13 @@
     left: 50%;
     top: -10%;
     transform: translate(-50%);
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }

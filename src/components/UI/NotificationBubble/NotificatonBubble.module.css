@@ -1,9 +1,31 @@
-.bubble{
-    background-color: var(--primary-light);
-    border-radius: 50px;
-    text-align: center;
-    font-size: 1rem;
-    width: 2rem;
-    height: 100%;
-    padding: 0.25rem;
+.bubble {
+  background-color: var(--primary-light);
+  border-radius: 50px;
+  text-align: center;
+  font-size: 1rem;
+  width: 2rem;
+  height: 100%;
+  padding: 0.25rem;
+}
+
+.bump {
+  animation: bump 300ms ease-out;
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.9);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

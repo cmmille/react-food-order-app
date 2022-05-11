@@ -17,6 +17,7 @@ const Cart = (props) => {
   function confirmOrder() {
     if (cartCtx.itemsInCart !== 0) {
       console.log("Order confirmed!");
+      console.log(cartCtx.items);
       cartCtx.onCart();
       cartCtx.clearCart();
       props.onConfirmed();
