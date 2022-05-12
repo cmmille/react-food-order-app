@@ -45,7 +45,7 @@ const Cart = (props) => {
           Cancel
         </Button>
         <Button
-          onClick={openCheckout}
+          onClick={cartCtx.itemsInCart > 0 ? openCheckout : null}
           styled={cartCtx.itemsInCart <= 0 ? "disabled" : ""}
         >
           Checkout
