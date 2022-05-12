@@ -49,24 +49,28 @@ const Checkout = (props) => {
           name="name"
           label="Your Name"
           value={formValues.name}
+          isValid = {isValid.name}
           onChange={changeHandler}
         />
         <Input
           name="street"
           label="Street Address"
           value={formValues.street}
+          isValid = {isValid.street}
           onChange={changeHandler}
         />
         <Input
           name="zip"
           label="Postal Code"
           value={formValues.zip}
+          isValid = {isValid.zip}
           onChange={changeHandler}
         />
         <Input
           name="city"
           label="City"
           value={formValues.city}
+          isValid = {isValid.city}
           onChange={changeHandler}
         />
         <div className={styles.row}>

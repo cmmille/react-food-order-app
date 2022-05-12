@@ -3,7 +3,7 @@ import styles from "./Input.module.css";
 
 const Input = (props) => {
   // State
-//   const [isValid, setIsValid] = useState(false);
+  //   const [isValid, setIsValid] = useState(false);
   const [isTouched, setIsTouched] = useState(false);
   const isInvalid = !props.isValid & isTouched;
 
@@ -31,7 +31,9 @@ const Input = (props) => {
         type="text"
       />
       {isInvalid ? (
-        <p className={styles["invalid-label"]}>{props.label} cannot be blank.</p>
+        <p className={styles["invalid-label"]}>
+          {props.label} cannot be blank.
+        </p>
       ) : (
         ""
       )}
