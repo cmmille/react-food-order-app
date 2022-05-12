@@ -78,7 +78,7 @@ const Checkout = (props) => {
             Cancel
           </Button>
           <Button
-            onClick={props.onConfirm}
+            onClick={formIsValid ? props.onConfirm : null}
             styled={!formIsValid ? "disabled" : ""}
           >
             Confirm
