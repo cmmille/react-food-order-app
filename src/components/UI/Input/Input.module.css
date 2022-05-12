@@ -1,0 +1,14 @@
+.input{
+    font-size: 1.5rem;
+}
+.form-label{
+    font-weight: 600;
+}
+.invalid{
+    background-color: #ffb4b4;
+    border: solid rgb(123, 0, 0) 1px;
+}
+.invalid-label{
+    color: rgb(123, 0, 0);
+    margin: 0 ;
+}
