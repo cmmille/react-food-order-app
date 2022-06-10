@@ -7,30 +7,41 @@ import CartContext from "../../store/cart-context";
 import Checkout from "./Checkout/Checkout";
 
 import styles from "./Cart.module.css";
+import useHttp from "../../hooks/use-http";
 
 const Cart = (props) => {
   // State
   const cartCtx = useContext(CartContext);
   const [checkoutVisible, setCheckoutVisible] = useState(false);
+  const { error, isLoading, sendRequest: sendOrderToServer } = useHttp();
   useEffect(() => {
     if (cartCtx.itemsInCart <= 0) {
-      setCheckoutVisible(false)
+      setCheckoutVisible(false);
     }
-  }, [cartCtx.itemsInCart])
-
+  }, [cartCtx.itemsInCart]);
 
   // Handlers
   function closeCart() {
     cartCtx.onCart();
     setCheckoutVisible(false);
   }
-  function confirmOrder() {
+  function submitHandler() {
+    cartCtx.onCart();
+    cartCtx.clearCart();
+    props.onConfirmed();
+  }
+
+  async function confirmOrder(customerInfo) {
     if (cartCtx.itemsInCart !== 0) {
-      console.log("Order confirmed!");
-      console.log(cartCtx.items);
-      cartCtx.onCart();
-      cartCtx.clearCart();
-      props.onConfirmed();
+      await sendOrderToServer({
+        url: "https://react-course-80b51-default-rtdb.firebaseio.com/orders.json",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: { order: cartCtx.items, customerInfo: customerInfo },
+      }, submitHandler);
+
     }
   }
   function openCheckout() {
@@ -73,8 +84,16 @@ const Cart = (props) => {
         <h2>Total Amount</h2>
         <h2>{cartCtx.total}</h2>
       </div>
-      {!checkoutVisible && <ButtonRow/>}
-      {checkoutVisible && <Checkout onConfirm = {confirmOrder} onClose = {closeCart}/>}
+      {!checkoutVisible && <ButtonRow />}
+      {checkoutVisible && (
+        <Checkout onConfirm={confirmOrder} onClose={closeCart} />
+      )}
+      {error && (
+        <p className={styles.error}>
+          Couldn't confirm order, please try again later.
+        </p>
+      )}
+      {isLoading && <p>Sending order to server...</p>}
     </Modal>
   );
 };

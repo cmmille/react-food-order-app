@@ -1,24 +1,28 @@
-.row{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.buttons{
-    justify-content: flex-end;
-    gap: 1rem;
+.buttons {
+  justify-content: flex-end;
+  gap: 1rem;
 }
-.cancel-button{
-    background-color: white;
-    color: var(--primary-dark);
-    font-weight: 600;
-    border: 1px solid var(--primary-dark);
+.cancel-button {
+  background-color: white;
+  color: var(--primary-dark);
+  font-weight: 600;
+  border: 1px solid var(--primary-dark);
 }
-.cancel-button:hover{
-    border: 1px solid var(--primary-light);
-    color: white;
+.cancel-button:hover {
+  border: 1px solid var(--primary-light);
+  color: white;
 }
-.confirm-button{
-    background-color: var(--primary);
+.confirm-button {
+  background-color: var(--primary);
+}
+.error {
+  color: rgb(123, 0, 0);
+  margin: 0;
 }

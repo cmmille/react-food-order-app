@@ -18,6 +18,7 @@ const Button = (props) => {
 
   return (
     <button
+      type="button"
       onClick={clickHandler}
       className={`${styles.button} ${getStyle()} ${props.className} `}
     >

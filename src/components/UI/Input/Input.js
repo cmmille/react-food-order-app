@@ -3,7 +3,6 @@ import styles from "./Input.module.css";
 
 const Input = (props) => {
   // State
-  //   const [isValid, setIsValid] = useState(false);
   const [isTouched, setIsTouched] = useState(false);
   const isInvalid = !props.isValid & isTouched;
 

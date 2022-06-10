@@ -1,5 +1,10 @@
 .input{
     font-size: 1.5rem;
+    outline: none;
+}
+.input:focus{
+    box-shadow: 0 0 0 2px var(--primary);
+    border: none;
 }
 .form-label{
     font-weight: 600;

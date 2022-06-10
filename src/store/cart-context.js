@@ -22,10 +22,8 @@ export const CartContextProvider = (props) => {
   useEffect(() => {
     //   Update quantity
     if (items.length === 0) {
-      console.log("Items empty...");
       setTotalItems(0);
     } else {
-      console.log("Setting i...");
       const i = items.reduce((total, item) => total + item.quantity, 0);
       setTotalItems(i);
     }
@@ -64,18 +62,15 @@ export const CartContextProvider = (props) => {
 
   function incrementItemHandler(id) {
     const newItems = items.map((item) => {
-      console.log(item.id);
       if (item.id === id) {
         return { ...item, quantity: item.quantity + 1 };
       }
       return item;
     });
-    console.log(newItems);
     setItems(newItems);
   }
 
   function decrementItemHandler(id) {
-    console.log("Decreasing...");
     const newItems = items.map((item) => {
       if (item.id === id) {
         const newQuantity = item.quantity - 1;
@@ -85,7 +80,6 @@ export const CartContextProvider = (props) => {
       }
       return item;
     });
-    console.log(newItems);
     setItems(newItems.filter(value => value != null));
   }
 

@@ -31,14 +31,21 @@ const Checkout = (props) => {
     event.preventDefault();
   }
   function changeHandler(event) {
-    if (event.target.value !== "") {
+    if (event.target.value.trim() !== "") {
       setIsValid((prev) => {
         return { ...prev, [event.target.name]: true };
+      });
+    } else {
+      setIsValid((prev) => {
+        return { ...prev, [event.target.name]: false };
       });
     }
     setFormValues((prev) => {
       return { ...prev, [event.target.name]: event.target.value };
     });
+  }
+  function buttonClickHandler(){
+    props.onConfirm(formValues)
   }
 
   // Components
@@ -49,28 +56,28 @@ const Checkout = (props) => {
           name="name"
           label="Your Name"
           value={formValues.name}
-          isValid = {isValid.name}
+          isValid={isValid.name}
           onChange={changeHandler}
         />
         <Input
           name="street"
           label="Street Address"
           value={formValues.street}
-          isValid = {isValid.street}
+          isValid={isValid.street}
           onChange={changeHandler}
         />
         <Input
           name="zip"
           label="Postal Code"
           value={formValues.zip}
-          isValid = {isValid.zip}
+          isValid={isValid.zip}
           onChange={changeHandler}
         />
         <Input
           name="city"
           label="City"
           value={formValues.city}
-          isValid = {isValid.city}
+          isValid={isValid.city}
           onChange={changeHandler}
         />
         <div className={styles.row}>
@@ -78,7 +85,7 @@ const Checkout = (props) => {
             Cancel
           </Button>
           <Button
-            onClick={formIsValid ? props.onConfirm : null}
+            onClick={formIsValid ? buttonClickHandler : null}
             styled={!formIsValid ? "disabled" : ""}
           >
             Confirm
