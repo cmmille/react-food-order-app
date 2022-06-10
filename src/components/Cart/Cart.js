@@ -14,6 +14,7 @@ const Cart = (props) => {
   const cartCtx = useContext(CartContext);
   const [checkoutVisible, setCheckoutVisible] = useState(false);
   const { error, isLoading, sendRequest: sendOrderToServer } = useHttp();
+  const [isConfirmed, setIsConfirmed] = useState(false);
   useEffect(() => {
     if (cartCtx.itemsInCart <= 0) {
       setCheckoutVisible(false);
@@ -26,22 +27,23 @@ const Cart = (props) => {
     setCheckoutVisible(false);
   }
   function submitHandler() {
-    cartCtx.onCart();
+    setIsConfirmed(true);
     cartCtx.clearCart();
-    props.onConfirmed();
   }
 
   async function confirmOrder(customerInfo) {
     if (cartCtx.itemsInCart !== 0) {
-      await sendOrderToServer({
-        url: "https://react-course-80b51-default-rtdb.firebaseio.com/orders.json",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      await sendOrderToServer(
+        {
+          url: "https://react-course-80b51-default-rtdb.firebaseio.com/orders.json",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: { order: cartCtx.items, customerInfo: customerInfo },
         },
-        body: { order: cartCtx.items, customerInfo: customerInfo },
-      }, submitHandler);
-
+        submitHandler
+      );
     }
   }
   function openCheckout() {
@@ -65,35 +67,64 @@ const Cart = (props) => {
     );
   };
 
+  const CartContent = () => {
+    return (
+      <>
+        {cartCtx.items.map((item) => {
+          return (
+            <CartItem
+              key={item.id}
+              id={item.id}
+              product={item.product}
+              price={item.price}
+              quantity={item.quantity}
+              increase={cartCtx.increaseItem}
+              decrease={cartCtx.decreaseItem}
+            />
+          );
+        })}
+        <div className={styles.row}>
+          <h2>Total Amount</h2>
+          <h2>{cartCtx.total}</h2>
+        </div>
+        {!checkoutVisible && <ButtonRow />}
+        {checkoutVisible && (
+          <Checkout onConfirm={confirmOrder} onClose={closeCart} />
+        )}
+      </>
+    );
+  };
+
+  const LoadingContent = () => {
+    return <h2>Sending order to restaurant...</h2>;
+  };
+
+  const OrderConfirmed = () => {
+    return (
+      <>
+        <h2>Order confirmed!</h2>
+        <p>Your fooce will be there soon!</p>
+      </>
+    );
+  };
+
+  const OrderError = () => {
+    return (
+      <>
+        <h2 className={styles.error}>System Error</h2>
+        <p className={styles.error}>
+          Sorry, we couldn't confirm your order right now. Please try again later.
+        </p>
+      </>
+    );
+  };
+
   return (
     <Modal onClick={closeCart}>
-      {cartCtx.items.map((item) => {
-        return (
-          <CartItem
-            key={item.id}
-            id={item.id}
-            product={item.product}
-            price={item.price}
-            quantity={item.quantity}
-            increase={cartCtx.increaseItem}
-            decrease={cartCtx.decreaseItem}
-          />
-        );
-      })}
-      <div className={styles.row}>
-        <h2>Total Amount</h2>
-        <h2>{cartCtx.total}</h2>
-      </div>
-      {!checkoutVisible && <ButtonRow />}
-      {checkoutVisible && (
-        <Checkout onConfirm={confirmOrder} onClose={closeCart} />
-      )}
-      {error && (
-        <p className={styles.error}>
-          Couldn't confirm order, please try again later.
-        </p>
-      )}
-      {isLoading && <p>Sending order to server...</p>}
+      {!isLoading && !isConfirmed && <CartContent />}
+      {error && <OrderError />}
+      {isLoading && !isConfirmed && <LoadingContent />}
+      {!isLoading && isConfirmed && <OrderConfirmed />}
     </Modal>
   );
 };
