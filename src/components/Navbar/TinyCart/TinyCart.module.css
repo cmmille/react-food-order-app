@@ -8,6 +8,9 @@
   font-size: 0.75rem !important;
   padding: 0 0.5rem !important;
 }
+.cart svg{
+  font-size: 1rem;
+}
 @media (max-width: 768px) {
   .cart h2 {
       visibility: hidden;
