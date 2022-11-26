@@ -32,7 +32,7 @@ jobs:
       with:
         azcliversion: 2.30.0
         inlineScript: |
-          az account show
+          az storage blob upload-batch --source ./src --destination '$web/fooce/src' --account-name ${{ env.STORAGE_ACCOUNT }}
     - name: logout
       run: |
             az logout
