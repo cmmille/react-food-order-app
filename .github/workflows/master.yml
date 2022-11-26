@@ -31,7 +31,7 @@ jobs:
       uses: azure/login@v1
       with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - run: |
+    - run:
         echo "Deploying build to ${{ env.PATH }}"
     - name: Upload to the storage account
       uses: azure/CLI@v1
