@@ -9,8 +9,8 @@ on:
 env:
   NODE_VERSION: '18.2'
   STORAGE_ACCOUNT: 'clockfeldapps'
-  BLOB_NAME: ${{ github.event.repository.name }}
-  STORAGE_PATH: '/${{ github.event.repository.name }}'
+  REPO_NAME: ${{ github.event.repository.name }}
+  STORAGE_PATH: '$web/${{ github.event.repository.name }}'
 
 jobs:
   build-and-deploy:
@@ -23,7 +23,7 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
     - name: npm install and build
       run: |
-        echo "building ${{ env.BLOB_NAME }}"
+        echo "building ${{ env.REPO_NAME }}"
         npm install
         npm run build --if-present
 
@@ -32,13 +32,13 @@ jobs:
       with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
     - run:
-        echo "Deploying build to \$web${{ env.STORAGE_PATH }}"
+        echo 'Deploying build to ${{ env.STORAGE_PATH }}'
     - name: Upload to the storage account
       uses: azure/CLI@v1
       with:
         azcliversion: 2.30.0
         inlineScript: |
-          az storage blob upload-batch --source ./build --destination ${{ env.STORAGE_PATH }} --account-name ${{ env.STORAGE_ACCOUNT }}
+          az storage blob upload-batch --source ./build --destination '${{ env.STORAGE_PATH }}' --account-name ${{ env.STORAGE_ACCOUNT }}
     - name: logout
       run: |
             az logout
