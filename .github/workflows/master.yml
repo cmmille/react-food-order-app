@@ -26,13 +26,12 @@ jobs:
         npm install
         npm run build --if-present
 
-    - uses: azure/login@v1
+    - name: login to azure
+      uses: azure/login@v1
       with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: Upload to the storage account
       uses: azure/CLI@v1
-      run:
-        echo "deploying build to apps.clockfeld.com/$BLOB_NAME"
       with:
         azcliversion: 2.30.0
         inlineScript: |
