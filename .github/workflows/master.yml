@@ -9,6 +9,7 @@ on:
 env:
   NODE_VERSION: '18.2'
   STORAGE_ACCOUNT: 'clockfeldapps'
+  BLOB_NAME: ${{ github.event.repository.name }}
 
 jobs:
   build-and-deploy:
@@ -32,7 +33,8 @@ jobs:
       with:
         azcliversion: 2.30.0
         inlineScript: |
-          az storage blob upload-batch --source ./build --destination '$web/fooce' --account-name ${{ env.STORAGE_ACCOUNT }}
+          echo "Writing build to apps.clockfeld.com/$BLOB_NAME"
+          az storage blob upload-batch --source ./build --destination "$web/$BLOB_NAME" --account-name ${{ env.STORAGE_ACCOUNT }}
     - name: logout
       run: |
             az logout
