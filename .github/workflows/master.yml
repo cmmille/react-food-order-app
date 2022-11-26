@@ -10,7 +10,7 @@ env:
   NODE_VERSION: '18.2'
   STORAGE_ACCOUNT: 'clockfeldapps'
   BLOB_NAME: ${{ github.event.repository.name }}
-  STORAGE_PATH: $web/${{ github.event.repository.name }}
+  STORAGE_PATH: '$web/${{ github.event.repository.name }}'
 
 jobs:
   build-and-deploy:
@@ -32,7 +32,7 @@ jobs:
       with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
     - run:
-        echo "Deploying build to ${{ env.PATH }}"
+        echo "Deploying build to ${{ env.STORAGE_PATH }}"
     - name: Upload to the storage account
       uses: azure/CLI@v1
       with:
