@@ -22,6 +22,7 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
     - name: npm install and build
       run: |
+        echo "building $BLOB_NAME"
         npm install
         npm run build --if-present
 
@@ -30,11 +31,12 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: Upload to the storage account
       uses: azure/CLI@v1
+      run:
+        echo "deploying build to apps.clockfeld.com/$BLOB_NAME"
       with:
         azcliversion: 2.30.0
         inlineScript: |
-          echo "Writing build to apps.clockfeld.com/$BLOB_NAME"
-          az storage blob upload-batch --source ./build --destination "$web/$BLOB_NAME" --account-name ${{ env.STORAGE_ACCOUNT }}
+          az storage blob upload-batch --source ./build --destination "$web/${{ env.BLOB_NAME }}" --account-name ${{ env.STORAGE_ACCOUNT }}
     - name: logout
       run: |
             az logout
