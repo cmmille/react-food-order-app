@@ -10,7 +10,7 @@ env:
   NODE_VERSION: '18.2'
   STORAGE_ACCOUNT: 'clockfeldapps'
   BLOB_NAME: ${{ github.event.repository.name }}
-  PATH: '$web/${{ github.event.repository.name }}'
+  PATH: $web/${{ github.event.repository.name }}
 
 jobs:
   build-and-deploy:
