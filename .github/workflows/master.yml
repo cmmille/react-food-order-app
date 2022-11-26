@@ -32,7 +32,7 @@ jobs:
       with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
     - run:
-        echo "Deploying build to $web${{ env.STORAGE_PATH }}"
+        echo "Deploying build to \$web${{ env.STORAGE_PATH }}"
     - name: Upload to the storage account
       uses: azure/CLI@v1
       with:
