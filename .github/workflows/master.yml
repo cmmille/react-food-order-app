@@ -30,7 +30,7 @@ jobs:
     - name: Upload to the storage account
       uses: azure/CLI@v1
       with:
-        azcliversion: 2.30
+        azcliversion: 2.30.0
         inlineScript: |
           az account show
     - name: logout
