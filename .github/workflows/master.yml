@@ -30,8 +30,9 @@ jobs:
     - name: Upload to the storage account
       uses: azure/CLI@v1
       with:
+        azcliversion: 2.30
         inlineScript: |
-            az storage blob upload-batch --source ./src --destination '$web/fooce/src' --account-name ${{ env.STORAGE_ACCOUNT }}
+          az account show
     - name: logout
       run: |
             az logout
