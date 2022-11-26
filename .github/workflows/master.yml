@@ -10,6 +10,7 @@ env:
   NODE_VERSION: '18.2'
   STORAGE_ACCOUNT: 'clockfeldapps'
   BLOB_NAME: ${{ github.event.repository.name }}
+  PATH: '$web/${{ BLOB_NAME }} '
 
 jobs:
   build-and-deploy:
@@ -30,13 +31,14 @@ jobs:
       uses: azure/login@v1
       with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
+    - run: |
+        echo "Deploying build to ${{ env.PATH }}"
     - name: Upload to the storage account
       uses: azure/CLI@v1
       with:
         azcliversion: 2.30.0
         inlineScript: |
-          az storage blob upload-batch --source ./build --destination "$web/${{ env.BLOB_NAME }}" --account-name ${{ env.STORAGE_ACCOUNT }}
+          az storage blob upload-batch --source ./build --destination ${{ env.PATH }} --account-name ${{ env.STORAGE_ACCOUNT }}
     - name: logout
       run: |
             az logout
